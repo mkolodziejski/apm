@@ -5,16 +5,13 @@ This is an APM solution **prototype**. It allows to monitor the most important m
 
 ## Build and run
 
-There are (at least) two ways to build and run this project:
-* using Docker
-* building and setting it up manually on the host machine
+The simpliest way to build and run the project is to use Docker. You can do it with a single command:
 
-The simpliest way is to use Docker. You can do it with a single command:
 `./build-run.sh`
 
 Then go to:
-[http://localhost:8080](http://localhost:8080) to invoke example REST API
-[http://localhost:5000](http://localhost:5000) to open Metrics UI
+* [http://localhost:8080](http://localhost:8080) to invoke example REST API
+* [http://localhost:5000](http://localhost:5000) to open Metrics UI
 
 
 The `build-run.sh` script does the following:
@@ -34,9 +31,9 @@ Alternatively, you can do all that manually, but why bother...?
 ## Project description
 
 The project constists of three parts:
-* [Java agent](#h3-java-agent)
-* [metrics UI](#h3-metrics-ui)
-* [an example REST API to be monitored](#h3-an-example-rest-api-to-be-monitored)
+* [Java agent](#java-agent)
+* [metrics UI](#metrics-ui)
+* [an example REST API to be monitored](#an-example-rest-api-to-be-monitored)
 
 They are briefly described below.
 
