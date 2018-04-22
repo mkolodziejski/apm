@@ -28,6 +28,25 @@ The `build-run.sh` script does the following:
 Alternatively, you can do all that manually, but why bother...?
 
 
+### Java agent configuration
+
+There's a set of configuration options you may use to change the default behavior of Java agent:
+
+| name | default value | description |
+| --- | --- | --- |
+| `interval` | 60 | interval between subsequent metrics collection, in seconds |
+| `logPath` | /apm/logs | directory to which CSVs are saved |
+| `instrumentationPackage` | pl.mkolodziejski.apm.client_app | only classes located in this package (and subpackages) will be instrumented |
+| `instrumentationAnnotatonClass` | org.springframework.web.bind.annotation.RequestMapping | only methods annotatated with this class will be instrumented |
+| `debugOn` | true |  |
+
+Multiple options should be comma-separated. Example:
+
+`java -javaagent:/apm/javaagent/javaagent-1.0.0.jar=interval=10,debugOn=false -jar /webapp/webapp-1.0.0.jar`
+
+To set this options for Docker image, edit the `entrypoint.sh` file and re-run `build-run.sh`.
+
+
 ## Project description
 
 The project constists of three parts:
@@ -50,7 +69,7 @@ This is a core part of this APM solution. It collects all the data from the JVM,
   + memory: total, available, free, swap total, swap free
   + network (for each interface): bytes received, bytes sent
 + application
-  + time and number of executions of each method annotated with annotation specified in configuration (Spring&apos;s `@ RequestMapping` by default)
+  + time and number of executions of each method annotated with annotation specified in configuration (Spring's `@RequestMapping` by default)
 
 All the data is periodically collected and serialized into CSV files.
 
