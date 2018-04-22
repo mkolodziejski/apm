@@ -1,0 +1,41 @@
+buildscript {
+    ext {
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+    }
+}
+
+apply plugin: 'java'
+
+group = 'pl.mkolodziejski.apm.javaagent'
+version = '1.0.0'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'org.ow2.asm:asm:5.0.3'
+    compile 'org.ow2.asm:asm-commons:5.0.3'
+    testCompile 'junit:junit:4.12'
+}
+
+
+jar {
+    manifest {
+        attributes(
+                "Premain-Class": "pl.mkolodziejski.apm.javaagent.Premain",
+                "Can-Redefine-Classes": "true",
+                "Can-Retransform-Classes": "true"
+        )
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
